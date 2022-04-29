@@ -13,13 +13,16 @@ def ToDoList():
             operation = int(input("Which of the following options do you want to use?(Input option number) \n1.Add, 2.Modify, 3.Delete, 4.Exit\n"))
             if operation == 1:
                 def ordinalSuffixSelector(numCount):
-                    if numCount == 1:
+                    numEnd = numCount % 10
+                    if numEnd == 1:
                         selector = 'st'
-                    elif numCount == 2:
+                    elif numEnd == 2:
                         selector = 'nd'
-                    elif numCount == 3:
+                    elif numEnd == 3:
                         selector = 'rd'
-                    elif numCount >= 4:
+                    elif numEnd >= 4:
+                        selector = 'th'
+                    elif numEnd == 0:
                         selector = 'th'
                     return selector
                 newToDoList = input("Input {0}{1} ToDoList: ".format(numCount, ordinalSuffixSelector(numCount)))
