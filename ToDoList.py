@@ -12,7 +12,7 @@ def ToDoList():
         while True:
             operation = int(input("Which of the following options do you want to use?(Input option number) \n1.Add, 2.Modify, 3.Delete, 4.Exit\n"))
             if operation == 1:
-                def thSelector(numCount):
+                def ordinalSuffixSelector(numCount):
                     if numCount == 1:
                         selector = 'st'
                     elif numCount == 2:
@@ -22,7 +22,7 @@ def ToDoList():
                     elif numCount >= 4:
                         selector = 'th'
                     return selector
-                newToDoList = input("Input {0}{1} ToDoList: ".format(numCount, thSelector(numCount)))
+                newToDoList = input("Input {0}{1} ToDoList: ".format(numCount, ordinalSuffixSelector(numCount)))
                 numCount += 1
                 toDoList.append(newToDoList)
                 showList(toDoList)
