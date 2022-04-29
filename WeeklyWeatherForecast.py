@@ -16,17 +16,25 @@ if selectLang == 1:
     print("City list: {0}".format(cityListEng))
     city = input("Input city: ")
     print("\n")
-    lat = str(cityCoordinateInfoEng[city][0])
-    lon = str(cityCoordinateInfoEng[city][1]) 
-    weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=current,minutely,hourly,alerts&appid=' + apiKey
+    if city in cityListEng:
+        lat = str(cityCoordinateInfoEng[city][0])
+        lon = str(cityCoordinateInfoEng[city][1]) 
+        weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=current,minutely,hourly,alerts&appid=' + apiKey
+    else:
+        print("City is not in the list")
+        exit()
 
 elif selectLang == 2:
     print("검색 가능한 도시: {0}".format(cityListKor))
     city = input("도시를 입력해주세요: ")
     print("\n")
-    lat = str(cityCoordinateInfoKor[city][0])
-    lon = str(cityCoordinateInfoKor[city][1])
-    weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=current,minutely,hourly,alerts&appid=' + apiKey
+    if city in cityListKor:
+        lat = str(cityCoordinateInfoKor[city][0])
+        lon = str(cityCoordinateInfoKor[city][1])
+        weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=current,minutely,hourly,alerts&appid=' + apiKey
+    else:
+        print("검색하신 도시가 없습니다")
+        exit()
 
 response = requests.get(weatherUrl)
 
@@ -76,41 +84,35 @@ def compInfo(weatherData, dayNum, selectLang):
         print("구름: {0}%".format(cloudy))
 
 if selectLang == 1:
-    if city in cityListEng:
-        for day in range(8):
-            if day == 0:
-                print("Today's weather of {0}\n".format(city))
-                compInfo(weatherData, day, 1)
-                print("\n")
-            elif day == 1:
-                print("Tomorrow's weather of {0}\n".format(city))
-                compInfo(weatherData, day, 1)
-                print("\n")
-            else:
-                print("Weather of {0} after {1}days\n".format(city, day))
-                compInfo(weatherData, day, 1)
-                print("\n")
-    else:
-        print("City is not in the list")
+    for day in range(8):
+        if day == 0:
+            print("Today's weather of {0}\n".format(city))
+            compInfo(weatherData, day, 1)
+            print("\n")
+        elif day == 1:
+            print("Tomorrow's weather of {0}\n".format(city))
+            compInfo(weatherData, day, 1)
+            print("\n")
+        else:
+            print("Weather of {0} after {1}days\n".format(city, day))
+            compInfo(weatherData, day, 1)
+            print("\n")
 
 elif selectLang == 2:
-    if city in cityListKor:
-        for day in range(8):
-            if day == 0:
-                print("{0}의 오늘 날씨입니다\n".format(city))
-                compInfo(weatherData, day, 2)
-                print("\n")
-            elif day == 1:
-                print("{0}의 내일 날씨입니다\n".format(city))
-                compInfo(weatherData, day, 2)
-                print("\n")
-            elif day == 2:
-                print("{0}의 내일 모레 날씨입니다\n".format(city))
-                compInfo(weatherData, day, 2)
-                print("\n")
-            else:
-                print("{0}의 {1}일 후 날씨입니다\n".format(city, day))
-                compInfo(weatherData, day, 2)
-                print("\n")
-    else:
-        print("검색하신 도시가 없습니다")
+    for day in range(8):
+        if day == 0:
+            print("{0}의 오늘 날씨입니다\n".format(city))
+            compInfo(weatherData, day, 2)
+            print("\n")
+        elif day == 1:
+            print("{0}의 내일 날씨입니다\n".format(city))
+            compInfo(weatherData, day, 2)
+            print("\n")
+        elif day == 2:
+            print("{0}의 내일 모레 날씨입니다\n".format(city))
+            compInfo(weatherData, day, 2)
+            print("\n")
+        else:
+            print("{0}의 {1}일 후 날씨입니다\n".format(city, day))
+            compInfo(weatherData, day, 2)
+            print("\n")
