@@ -73,16 +73,14 @@ def morseCodeTranslator():
 
     # Decrpyt 데이터 입력 (Input morse code to Decrpyt)
     elif cryptOption == 2:
-        inputOptionMorse = int(input("Select way to get data (1. Audio file, 2. Text file, 3. Manual input)(Input option number): "))
+        inputOptionMorse = int(input("Select way to get data (1. Text file, 2. Manual input)(Input option number): "))
         if inputOptionMorse == 1:
-            print("This function is not available yet.")
-        elif inputOptionMorse == 2:
             fileName = input("Input file address: ")
             fileName = fileName.replace('\\', '/').replace('"', '')
             fileMorse = open(fileName, 'r')
             dataMorse = fileMorse.read()
             fileMorse.close()
-        elif inputOptionMorse == 3:
+        elif inputOptionMorse == 2:
             dataMorse = input("Input morse code to decrypt: ")
         else:
             raise Exception("Wrong input")
